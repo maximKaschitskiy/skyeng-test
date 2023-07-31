@@ -1,10 +1,9 @@
 # Test task for Skyeng
 
-Screenshot:
-![appscreen](https://github.com/maximKaschitskiy/skyeng-test/assets/67905360/5fe67052-30bb-4f8b-a47b-b30d88b5d3c5)
-
 This repository contains a test task app for the "Skyeng" company.
 [Open build on Vercel](https://skyeng-test-nine.vercel.app/)
+
+![appscreen](https://github.com/maximKaschitskiy/skyeng-test/assets/67905360/5fe67052-30bb-4f8b-a47b-b30d88b5d3c5)
 
 ## Description
 Link to task description: [Google Docks](https://docs.google.com/document/d/1JAp5rQEmFT-sjSHT16he1jP9mrdYZsLDvjzUBuHEUec)
