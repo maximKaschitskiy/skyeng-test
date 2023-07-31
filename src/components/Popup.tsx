@@ -48,8 +48,6 @@ export const Popup = () => {
         }
     }
 
-    console.log(ui);
-
     const handleUrl = useMemo(() => getApi(), [location]);
 
     return (
