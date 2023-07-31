@@ -30,7 +30,8 @@ export const FilterBar = () => {
   ];
 
   const handleChage: ChangeOptionType = (item, param) => {
-    if (query[param] !== item.value) {
+
+    if (query[param] !== item.value && cards.items.length !== 0) {
       dispatch(changeLoad(true));
       dispatch(changeQuery({ [param]: item.value }));
       // place for change option in UI
@@ -63,12 +64,16 @@ export const FilterBar = () => {
         classNamePrefix="Select"
         defaultValue={sortOptions.filter((item) => item.value === query.sort)}
         onChange={(value, _action, param: keyof QueryType  = 'sort') => handleChage(value, param)}
+        id={'sort'}
+        key={'sort'}
       />
       <Select
         options={orderOptions}
         classNamePrefix="Select"
         defaultValue={orderOptions.filter((item) => item.value === query.order)}
         onChange={(value, _action, param: keyof QueryType = 'order') => handleChage(value, param)}
+        id={'order'}
+        key={'order'}
       />
     </FilterBarWrapper>
   );
