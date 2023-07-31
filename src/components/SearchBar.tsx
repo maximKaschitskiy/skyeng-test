@@ -24,10 +24,11 @@ export const SearchBar = () => {
   };
 
   const handleClick = () => {
-    dispatch(changeLoad(true));
-    dispatch(changeQuery({ q: ui.query }));
-    dispatch(firstPage());
-    searchUsers({ ...query, q: ui.query, page: 1 })
+    if (ui.query !== query.q) {
+      dispatch(changeLoad(true));
+      dispatch(changeQuery({ q: ui.query }));
+      dispatch(firstPage());
+      searchUsers({ ...query, q: ui.query, page: 1 })
       .then(res => {
         if (res.status === 200) {
           dispatch(loadCards(res.data));
@@ -37,6 +38,7 @@ export const SearchBar = () => {
         dispatch(popupShow({ ...ui, popupSubtitle: err.message, popupTitle: err.response.status }));
       })
       .finally(() => dispatch(changeLoad(false)))
+    }
   }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
