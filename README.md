@@ -10,7 +10,7 @@ The app is a React application, witch call GitHub API and render items from it.
 
 ## Technologies
 
-React, Typescript, emotion/styled, Axios, Vite, React Router Dom, React Select, Jest, testing-library/react
+React, Typescript, emotion/styled, Axios, Vite, Redux, React Router Dom, React Select, Jest, testing-library/react
 
 ## Functionality
 
