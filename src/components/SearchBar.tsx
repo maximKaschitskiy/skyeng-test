@@ -48,7 +48,7 @@ export const SearchBar = () => {
   return (
     <SearchBarWrapper>
       <SearchIcon src={SearchImage} />
-      <SearchInput value={ui.query} placeholder="Search repository" onChange={handleChage} onKeyDown={handleKeyDown} />
+      <SearchInput value={ui.query} placeholder="Search user" onChange={handleChage} onKeyDown={handleKeyDown} />
       <SearchButton disabled={ui.query === ''} onClick={handleClick}>Search</SearchButton>
     </SearchBarWrapper>
   );
