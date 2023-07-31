@@ -4,7 +4,7 @@ This repository contains a test task app for the "Skyeng" company.
 [Open build on Vercel](https://skyeng-test-nine.vercel.app/)
 
 ## Description
-Link to objective: [Google Docks](https://docs.google.com/document/d/1JAp5rQEmFT-sjSHT16he1jP9mrdYZsLDvjzUBuHEUec)
+Link to task description: [Google Docks](https://docs.google.com/document/d/1JAp5rQEmFT-sjSHT16he1jP9mrdYZsLDvjzUBuHEUec)
 
 
 Link to layout reference: [Dribble](https://dribbble.com/shots/10465507-GitHub-Repository-Search-website-concept)
