@@ -30,12 +30,11 @@ export const FilterBar = () => {
   ];
 
   const handleChage: ChangeOptionType = (item, param) => {
-
-    if (query[param] !== item.value && cards.items.length !== 0) {
+    if (query[param] !== item.value) {
       dispatch(changeLoad(true));
       dispatch(changeQuery({ [param]: item.value }));
       // place for change option in UI
-      if (cards.items.length > 0) {
+      if (cards.items.length !== 0) {
         dispatch(firstPage());
         searchUsers({ ...query, page: 1, [param]: item.value })
           .then((res) => {
