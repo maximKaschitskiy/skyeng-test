@@ -6,7 +6,9 @@ This repository contains a test task app for the "Skyeng" company.
 ## Description
 Link to objective: [Google Docks](https://docs.google.com/document/d/1JAp5rQEmFT-sjSHT16he1jP9mrdYZsLDvjzUBuHEUec)
 
+
 Link to layout reference: [Dribble](https://dribbble.com/shots/10465507-GitHub-Repository-Search-website-concept)
+
 
 The app is a React application, witch call GitHub API and render items from it.
 
