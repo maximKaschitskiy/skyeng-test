@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { searchUsers } from "../api/api";
-import { errShow } from "../redux/slice/uiSlice";
+import { popupShow } from "../redux/slice/uiSlice";
 import { loadCards } from "../redux/slice/cardsSlice";
 import { changeQuery, firstPage } from "../redux/slice/querySlice";
 import { changeSearch } from "../redux/slice/uiSlice";
@@ -25,25 +25,31 @@ export const SearchBar = () => {
 
   const handleClick = () => {
     dispatch(changeLoad(true));
-    dispatch(changeQuery({q: ui.query}));
+    dispatch(changeQuery({ q: ui.query }));
     dispatch(firstPage());
-    searchUsers({...query, q: ui.query, page: 1})
+    searchUsers({ ...query, q: ui.query, page: 1 })
       .then(res => {
         if (res.status === 200) {
           dispatch(loadCards(res.data));
         }
       })
       .catch((err) => {
-        dispatch(errShow({...ui, errMessage: err.message, errCode: err.response.status}));
+        dispatch(popupShow({ ...ui, popupSubtitle: err.message, popupTitle: err.response.status }));
       })
-      .finally(()=>dispatch(changeLoad(false)))
+      .finally(() => dispatch(changeLoad(false)))
   }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' && ui.query !== '') {
+      handleClick();
+    }
+  };
 
   return (
     <SearchBarWrapper>
       <SearchIcon src={SearchImage} />
-      <SearchInput value={ui.query} placeholder="Search repository" onChange={handleChage} />
-      <SearchButton onClick={handleClick}>Search</SearchButton>
+      <SearchInput value={ui.query} placeholder="Search repository" onChange={handleChage} onKeyDown={handleKeyDown} />
+      <SearchButton disabled={ui.query === ''} onClick={handleClick}>Search</SearchButton>
     </SearchBarWrapper>
   );
 };

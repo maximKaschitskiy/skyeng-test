@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useHover, useDebounce } from 'usehooks-ts'
 import { changeId } from '../redux/slice/uiSlice';
 import { CardsType } from "../types";
@@ -19,6 +20,12 @@ export const Card = ({ card, index }: { card: CardsType, index: number }) => {
     dispatch(changeId(value));
   };
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/${card.login}`);
+  }
+
   const ref = useRef(null);
   const isHover = useHover(ref);
   const debouncedValue = useDebounce<any>(isHover, 500)
@@ -31,7 +38,7 @@ export const Card = ({ card, index }: { card: CardsType, index: number }) => {
   }, [debouncedValue])
 
   return (
-    <CardWrapper ref={ref} index={index}>
+    <CardWrapper ref={ref} index={index} onClick={handleClick}>
       <TitleTop index={index}>{card.login}</TitleTop>
       <UserImage src={card.avatar_url} index={index} />
       <ContentWrapper>

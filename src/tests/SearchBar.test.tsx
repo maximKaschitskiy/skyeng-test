@@ -51,7 +51,7 @@ test("Set some value from field to hook", () => {
 
 
 
-test("should return search results correctly", async () => {
+test("Return search results form API correctly", async () => {
 
     const mockAxios = new MockAdapter(axios);
 

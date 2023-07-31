@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">74.19% </span>
+                <span class="strong">70.58% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/31</span>
+                <span class='fraction'>24/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">44.44% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>4/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">67.74% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/28</span>
+                <span class='fraction'>21/31</span>
             </div>
         
             
@@ -112,7 +112,13 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -151,6 +157,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
@@ -163,7 +175,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useSelector, useDispatch } from "react-redux";
 import { searchUsers } from "../api/api";
-import { errShow } from "../redux/slice/uiSlice";
+import { popupShow } from "../redux/slice/uiSlice";
 import { loadCards } from "../redux/slice/cardsSlice";
 import { changeQuery, firstPage } from "../redux/slice/querySlice";
 import { changeSearch } from "../redux/slice/uiSlice";
@@ -188,25 +200,31 @@ export const SearchBar = () =&gt; {
 &nbsp;
   const handleClick = <span class="fstat-no" title="function not covered" >() =</span>&gt; {
 <span class="cstat-no" title="statement not covered" >    dispatch(changeLoad(true));</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(changeQuery({q: ui.query}));</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(changeQuery({ q: ui.query }));</span>
 <span class="cstat-no" title="statement not covered" >    dispatch(firstPage());</span>
-<span class="cstat-no" title="statement not covered" >    searchUsers({...query, q: ui.query, page: 1})</span>
+<span class="cstat-no" title="statement not covered" >    searchUsers({ ...query, q: ui.query, page: 1 })</span>
       .then(<span class="fstat-no" title="function not covered" >res </span>=&gt; {
 <span class="cstat-no" title="statement not covered" >        <span class="missing-if-branch" title="if path not taken" >I</span>if (res.status === 200) {</span>
 <span class="cstat-no" title="statement not covered" >          dispatch(loadCards(res.data));</span>
         }
       })
       .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
-<span class="cstat-no" title="statement not covered" >        dispatch(errShow({...ui, errMessage: err.message, errCode: err.response.status}));</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(popupShow({ ...ui, popupSubtitle: err.message, popupTitle: err.response.status }));</span>
       })
-      .finally(<span class="fstat-no" title="function not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >dispatch(changeLoad(false)))</span>
+      .finally(<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >dispatch(changeLoad(false)))</span>
   }
+&nbsp;
+  const handleKeyDown = <span class="fstat-no" title="function not covered" >(e</span>vent: React.KeyboardEvent&lt;HTMLInputElement&gt;) =&gt; {
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (event.key === 'Enter' &amp;&amp; ui.query !== '') {</span>
+<span class="cstat-no" title="statement not covered" >      handleClick();</span>
+    }
+  };
 &nbsp;
   return (
     &lt;SearchBarWrapper&gt;
       &lt;SearchIcon src={SearchImage} /&gt;
-      &lt;SearchInput value={ui.query} placeholder="Search repository" onChange={handleChage} /&gt;
-      &lt;SearchButton onClick={handleClick}&gt;Search&lt;/SearchButton&gt;
+      &lt;SearchInput value={ui.query} placeholder="Search repository" onChange={handleChage} onKeyDown={handleKeyDown} /&gt;
+      &lt;SearchButton disabled={ui.query === ''} onClick={handleClick}&gt;Search&lt;/SearchButton&gt;
     &lt;/SearchBarWrapper&gt;
   );
 };
@@ -217,7 +235,7 @@ export const SearchBar = () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-30T23:50:44.846Z
+                at 2023-07-31T10:54:17.347Z
             </div>
         <script src="../prettify.js"></script>
         <script>

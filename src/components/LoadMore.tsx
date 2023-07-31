@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { searchUsers } from "../api/api";
-import { errShow } from "../redux/slice/uiSlice";
+import { popupShow } from "../redux/slice/uiSlice";
 import { nextPage } from "../redux/slice/querySlice";
 import { changeLoad } from "../redux/slice/uiSlice";
 import { loadMore } from "../redux/slice/cardsSlice";
@@ -27,7 +27,7 @@ export const LoadMore = () => {
       })
       .catch((err) => {
         dispatch(
-          errShow({...ui, errMessage: err.message, errCode: err.response.status })
+          popupShow({...ui, popupSubtitle: err.message, popupTitle: err.response.status })
         );
       })
       .finally(() => dispatch(changeLoad(false)));

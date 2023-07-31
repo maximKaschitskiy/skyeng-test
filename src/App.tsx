@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@emotion/react";
+import { Routes, Route } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import type { RootState } from "./redux/store/store";
 import { theme } from "./styles/theme";
@@ -21,31 +22,38 @@ import { Popup } from "./components/Popup";
 import GHTextFIle from "./assets/GitHub_Logo_White.png";
 import GHCatFile from "./assets/github-mark.svg";
 
+
 export const App = () => {
 
   const ui = useSelector((state: RootState) => state.ui);
 
   return (
     <ThemeProvider theme={theme}>
-      <Background>
-        <AppWrapper>
-          <Popup />
-          <Header currentId={ui.currentId}>
-            <Logo>
-              <GhText src={GHTextFIle} />
-              <LogoText>Search</LogoText>
-              <GhCat src={GHCatFile} />
-            </Logo>
-            <SearchBar />
-            <Loader load={ui.loading}/>
-          </Header>
-          <Results>
-            <FilterBar />
-            <Cards />
-            <LoadMore />
-          </Results>
-        </AppWrapper>
-      </Background>
-    </ThemeProvider>
+      <Routes>
+        <Route path="*"
+          element={
+            <Background>
+              <AppWrapper>
+                <Popup />
+                <Header currentId={ui.currentId}>
+                  <Logo>
+                    <GhText src={GHTextFIle} />
+                    <LogoText>Search</LogoText>
+                    <GhCat src={GHCatFile} />
+                  </Logo>
+                  <SearchBar />
+                  <Loader load={ui.loading} />
+                </Header>
+                <Results>
+                  <FilterBar />
+                  <Cards />
+                  <LoadMore />
+                </Results>
+              </AppWrapper>
+            </Background>
+          }
+        />
+      </Routes>
+    </ThemeProvider >
   );
 };

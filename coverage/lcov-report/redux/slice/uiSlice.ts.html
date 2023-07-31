@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.58% </span>
+                <span class="strong">68.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/17</span>
+                <span class='fraction'>13/19</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">14.28% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>1/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.58% </span>
+                <span class="strong">68.42% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/17</span>
+                <span class='fraction'>13/19</span>
             </div>
         
             
@@ -112,10 +112,18 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,6 +156,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -155,6 +166,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -162,7 +174,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UiType } from '../../types';
+import { UiType, User } from '../../types';
 &nbsp;
   const initialState: UiType = {
     currentId: null,
@@ -170,8 +182,10 @@ import { UiType } from '../../types';
     query: '',
     option: '',
     popup: false,
-    errMessage: '',
-    errCode: ''
+    popupSubtitle: '',
+    popupTitle: '',
+    popupContent: '',
+    currentUser: null
   };
 &nbsp;
   const uiSlice = createSlice({
@@ -190,16 +204,19 @@ import { UiType } from '../../types';
 <span class="fstat-no" title="function not covered" >      changeOption(</span>state, action: PayloadAction&lt;UiType['option']&gt;) {
 <span class="cstat-no" title="statement not covered" >        return {...state, option: action.payload};</span>
       },
-<span class="fstat-no" title="function not covered" >      errShow(</span>state, action: PayloadAction&lt;UiType&gt;) {
-<span class="cstat-no" title="statement not covered" >        return {...state, popup: true, errMessage: action.payload.errMessage, errCode: action.payload.errCode};</span>
+<span class="fstat-no" title="function not covered" >      popupShow(</span>state, action: PayloadAction&lt;UiType&gt;) {
+<span class="cstat-no" title="statement not covered" >        return {...state, popup: true, popupSubtitle: action.payload.popupSubtitle, popupTitle: action.payload.popupTitle, popupContent: action.payload.popupContent};</span>
       },
-<span class="fstat-no" title="function not covered" >      errHide(</span>state) {
-<span class="cstat-no" title="statement not covered" >        return {...state, popup: false};</span>
+<span class="fstat-no" title="function not covered" >      popupHide(</span>state) {
+<span class="cstat-no" title="statement not covered" >        return {...state, popup: false, popupSubtitle: "", popupTitle: "", popupContent: ""};</span>
       },
+<span class="fstat-no" title="function not covered" >      setUser(</span>state, action: PayloadAction&lt;UiType['currentUser']&gt;) {
+<span class="cstat-no" title="statement not covered" >        return {...state, currentUser: action.payload};</span>
+      }
     },
   });
   
-const { changeId, changeLoad, changeSearch, errShow, errHide } = uiSlice.actions;
+const { changeId, changeLoad, changeSearch, popupShow, popupHide, setUser } = uiSlice.actions;
 &nbsp;
 const uiReducer = uiSlice.reducer;
 &nbsp;
@@ -207,8 +224,9 @@ export {
     changeId,
     changeLoad,
     changeSearch,
-    errShow,
-    errHide,
+    popupShow,
+    popupHide,
+    setUser,
     uiReducer
 };</pre></td></tr></table></pre>
 
@@ -217,7 +235,7 @@ export {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-30T23:50:44.846Z
+                at 2023-07-31T10:54:17.347Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

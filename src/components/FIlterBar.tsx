@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import type { OptionType, ChangeOptionType, QueryType } from "../types";
 import { changeQuery, firstPage } from "../redux/slice/querySlice";
 import { loadCards } from "../redux/slice/cardsSlice";
-import { changeLoad, errShow } from "../redux/slice/uiSlice";
+import { changeLoad, popupShow } from "../redux/slice/uiSlice";
 import { searchUsers } from "../api/api";
 import type { RootState } from "../redux/store/store";
 import FilterBarWrapper from "../styles/Blocks/FilterBarWrapper";
@@ -44,7 +44,7 @@ export const FilterBar = () => {
           })
           .catch((err) => {
             dispatch(
-              errShow({...ui ,errMessage: err.message, errCode: err.response.status })
+              popupShow({...ui, popupSubtitle: err.message, popupTitle: err.response.status })
             );
           })
           .finally(() => dispatch(changeLoad(false)));

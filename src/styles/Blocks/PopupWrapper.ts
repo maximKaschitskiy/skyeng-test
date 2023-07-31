@@ -8,6 +8,7 @@ const PopupWrapper = styled.div<any>`
   align-items: center;
   position: absolute;
   box-sizing: border-box;
+  border-radius: 25px;
   display: ${props => props.show ? 'flex' : 'none'};
 `;
 export default PopupWrapper;

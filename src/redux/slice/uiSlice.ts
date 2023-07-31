@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UiType } from '../../types';
+import { UiType, User } from '../../types';
 
   const initialState: UiType = {
     currentId: null,
@@ -7,8 +7,10 @@ import { UiType } from '../../types';
     query: '',
     option: '',
     popup: false,
-    errMessage: '',
-    errCode: ''
+    popupSubtitle: '',
+    popupTitle: '',
+    popupContent: '',
+    currentUser: null
   };
 
   const uiSlice = createSlice({
@@ -27,16 +29,19 @@ import { UiType } from '../../types';
       changeOption(state, action: PayloadAction<UiType['option']>) {
         return {...state, option: action.payload};
       },
-      errShow(state, action: PayloadAction<UiType>) {
-        return {...state, popup: true, errMessage: action.payload.errMessage, errCode: action.payload.errCode};
+      popupShow(state, action: PayloadAction<UiType>) {
+        return {...state, popup: true, popupSubtitle: action.payload.popupSubtitle, popupTitle: action.payload.popupTitle, popupContent: action.payload.popupContent};
       },
-      errHide(state) {
-        return {...state, popup: false};
+      popupHide(state) {
+        return {...state, popup: false, popupSubtitle: "", popupTitle: "", popupContent: ""};
       },
+      setUser(state, action: PayloadAction<UiType['currentUser']>) {
+        return {...state, currentUser: action.payload};
+      }
     },
   });
   
-const { changeId, changeLoad, changeSearch, errShow, errHide } = uiSlice.actions;
+const { changeId, changeLoad, changeSearch, popupShow, popupHide, setUser } = uiSlice.actions;
 
 const uiReducer = uiSlice.reducer;
 
@@ -44,7 +49,8 @@ export {
     changeId,
     changeLoad,
     changeSearch,
-    errShow,
-    errHide,
+    popupShow,
+    popupHide,
+    setUser,
     uiReducer
 };

@@ -12,5 +12,6 @@ const Owerfill = styled.div<any>`
   background-color: ${props => props.theme.colors.bgLight};
   opacity: 0.90;
   z-index: 1;
+  border-radius: 25px;
 `;
 export default Owerfill;
