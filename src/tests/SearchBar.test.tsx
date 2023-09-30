@@ -21,7 +21,7 @@ test("Set some value in field", () => {
 
     const testString = 'testString';
 
-    const inputElement: HTMLInputElement = screen.getByPlaceholderText("Search repository");
+    const inputElement: HTMLInputElement = screen.getByPlaceholderText("Search user");
 
     fireEvent.change(inputElement, { target: { value: testString } });
 
@@ -39,7 +39,7 @@ test("Set some value from field to hook", () => {
 
     const testString = 'testString';
 
-    const inputElement: HTMLInputElement = screen.getByPlaceholderText("Search repository");
+    const inputElement: HTMLInputElement = screen.getByPlaceholderText("Search user");
 
     fireEvent.change(inputElement, { target: { value: testString } });
 
